@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "3799333477",
+    "firebase_url": "https://flutter-chat-42179.firebaseio.com",
+    "project_id": "flutter-chat-42179",
+    "storage_bucket": "flutter-chat-42179.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3799333477:android:ebf25415a08fe0da64648c",
+        "android_client_info": {
+          "package_name": "com.example.fintech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3799333477-di7e0l3k6bbr4etjq70ne7o0bc1dn7ee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABFAGgI1X1YBIw8t8jwcwst8ZfNLzK0Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3799333477-di7e0l3k6bbr4etjq70ne7o0bc1dn7ee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3799333477:android:8d2f2cee5b89ef9a64648c",
+        "android_client_info": {
+          "package_name": "khalill.com.firebase_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3799333477-di7e0l3k6bbr4etjq70ne7o0bc1dn7ee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABFAGgI1X1YBIw8t8jwcwst8ZfNLzK0Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3799333477-di7e0l3k6bbr4etjq70ne7o0bc1dn7ee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3799333477:android:790bab21b111762b64648c",
+        "android_client_info": {
+          "package_name": "khalill.com.medicine_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "3799333477-di7e0l3k6bbr4etjq70ne7o0bc1dn7ee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABFAGgI1X1YBIw8t8jwcwst8ZfNLzK0Pw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "3799333477-di7e0l3k6bbr4etjq70ne7o0bc1dn7ee.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
