@@ -148,8 +148,7 @@ class ChipSelect extends StatelessWidget {
                                   ];
 
                                   context.read<CreditsController>().filter();
-                                  print(
-                                      context.read<CreditsController>().query);
+                                  Navigator.pop(context);
                                 }),
                                 SizedBox(height: AppInsets.insetsPadding.h),
                                 Text(
@@ -168,6 +167,7 @@ class ChipSelect extends StatelessWidget {
                                   ];
 
                                   context.read<CreditsController>().filter();
+                                  Navigator.pop(context);
                                 }),
                                 SizedBox(height: AppInsets.insetsPadding.h),
                                 Text(
@@ -186,6 +186,7 @@ class ChipSelect extends StatelessWidget {
                                   ];
 
                                   context.read<CreditsController>().filter();
+                                  Navigator.pop(context);
                                 }),
                                 SizedBox(height: AppInsets.insetsPadding.h),
                                 Text(
@@ -194,111 +195,102 @@ class ChipSelect extends StatelessWidget {
                                       .textTheme
                                       .subtitle1
                                       .copyWith(fontSize: 16.sp),
-                                ).gestures(
-                                    onTap: () => showMaterialModalBottomSheet(
-                                          context: context,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(32),
-                                              topRight: Radius.circular(32),
+                                ).gestures(onTap: () {
+                                  Navigator.pop(context);
+                                  showMaterialModalBottomSheet(
+                                    context: context,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(32),
+                                        topRight: Radius.circular(32),
+                                      ),
+                                    ),
+                                    builder: (context) => Material(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(32),
+                                          topRight: Radius.circular(32),
+                                        ),
+                                        child: SafeArea(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 24.h),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.stretch,
+                                              children: <Widget>[
+                                                Text(
+                                                  'Период',
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .headline1,
+                                                ).center(),
+                                                SizedBox(
+                                                    height: AppInsets
+                                                        .insetsPadding.h),
+                                                DateRangePicker(),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Закрыть',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1,
+                                                    )
+                                                        .padding(vertical: 11.h)
+                                                        .decorated(
+                                                          color: AppColors
+                                                              .colorGray,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(16),
+                                                        )
+                                                        .gestures(
+                                                            onTap: () =>
+                                                                Navigator.pop(
+                                                                    context))
+                                                        .expanded(),
+                                                    SizedBox(width: 12.w),
+                                                    Text(
+                                                      'Показать',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1
+                                                          .copyWith(
+                                                              color:
+                                                                  Colors.white),
+                                                    )
+                                                        .padding(vertical: 11.h)
+                                                        .decorated(
+                                                          color: AppColors
+                                                              .colorRed,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                            16,
+                                                          ),
+                                                        )
+                                                        .gestures(onTap: () {
+                                                      Navigator.pop(context);
+
+                                                      context
+                                                          .read<
+                                                              CreditsController>()
+                                                          .filter();
+                                                    }).expanded(),
+                                                  ],
+                                                ),
+                                                SizedBox(height: 32.h),
+                                              ],
                                             ),
                                           ),
-                                          builder: (context) => Material(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(32),
-                                                topRight: Radius.circular(32),
-                                              ),
-                                              child: SafeArea(
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 24.h),
-                                                  child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .stretch,
-                                                    children: <Widget>[
-                                                      Text(
-                                                        'Период',
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headline1,
-                                                      ).center(),
-                                                      SizedBox(
-                                                          height: AppInsets
-                                                              .insetsPadding.h),
-                                                      DateRangePicker(),
-                                                      Row(
-                                                        children: [
-                                                          Text(
-                                                            'Закрыть',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText1,
-                                                          )
-                                                              .padding(
-                                                                  vertical:
-                                                                      11.h)
-                                                              .decorated(
-                                                                color: AppColors
-                                                                    .colorGray,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            16),
-                                                              )
-                                                              .gestures(
-                                                                  onTap: () =>
-                                                                      Navigator.pop(
-                                                                          context))
-                                                              .expanded(),
-                                                          SizedBox(width: 12.w),
-                                                          Text(
-                                                            'Показать',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: Theme.of(
-                                                                    context)
-                                                                .textTheme
-                                                                .bodyText1
-                                                                .copyWith(
-                                                                    color: Colors
-                                                                        .white),
-                                                          )
-                                                              .padding(
-                                                                  vertical:
-                                                                      11.h)
-                                                              .decorated(
-                                                                color: AppColors
-                                                                    .colorRed,
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                  16,
-                                                                ),
-                                                              )
-                                                              .gestures(
-                                                                  onTap: () {
-                                                            Navigator.pop(
-                                                                context);
-
-                                                            context
-                                                                .read<
-                                                                    CreditsController>()
-                                                                .filter();
-                                                          }).expanded(),
-                                                        ],
-                                                      ),
-                                                      SizedBox(height: 32.h),
-                                                    ],
-                                                  ),
-                                                ),
-                                              )),
                                         )),
+                                  );
+                                }),
                                 SizedBox(height: 32.h),
                               ],
                             ),

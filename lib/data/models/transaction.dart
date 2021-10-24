@@ -238,23 +238,55 @@ class Transaction extends Equatable {
     }
   }
 
-  Color get toColorByMMC {
+  int get toColorByMMC {
     switch (mcc) {
       case 5814: //фастфуд
-        return Color(0xFFF3872F);
+        return 0xFFF3872F;
       case 5999: //разл. товары
-        return Color(0xFF628AF6);
+        return 0xFF628AF6;
       case 7372: //бизнес услуги
-        return Color(0xFF628AF6);
+        return 0xFF628AF6;
       case 6012: //поставщик услуг
-        return Color(0xFFE4B5FE);
+        return 0xFFE4B5FE;
       case 6011: //снятие наличных
-        return Color(0xFF9F25CB);
+        return 0xFF9F25CB;
       case 0:
-        return Color(0xFFFDE445);
+        return null;
       default:
-        return Color(0xFFFDE445);
+        return 0xFFFDE445;
     }
+  }
+
+  int get toColorByComment {
+    if (comment.contains(RegExp('Перевод', caseSensitive: false))) {
+      return 0xFF62D73B;
+    }
+    if (comment.contains(RegExp('Овер', caseSensitive: false))) {
+      return 0xFFF5C423;
+    }
+    if (comment.contains(RegExp('Пополн', caseSensitive: false))) {
+      return 0xFF64C34A;
+    }
+    if (comment.contains(
+        RegExp('для оплаты услуги Мобильная связь', caseSensitive: false))) {
+      return 0xFF2B62F6;
+    }
+    if (comment.contains(RegExp('для оплаты услуги', caseSensitive: false))) {
+      return 0xFFFC6C4F;
+    }
+    if (comment.contains(RegExp('Перечисление', caseSensitive: false))) {
+      return 0xFF62D73B;
+    }
+    if (comment.contains(RegExp('Возврат', caseSensitive: false))) {
+      return 0xFF63B2F2;
+    }
+    if (comment.contains(RegExp('Комисс', caseSensitive: false))) {
+      return 0xFF2B62F6;
+    }
+    if (comment.contains(RegExp('Кэш', caseSensitive: false))) {
+      return 0xFF8CE7FE;
+    }
+    return 0xFFFDE445;
   }
 
   bool get isDebit => operationType == "DEBIT";

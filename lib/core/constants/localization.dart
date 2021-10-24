@@ -19,5 +19,5 @@ class AppLocalization {
 
   static const String textDebits = 'Расходы';
 
-  static const String textCredits = 'Зачисления';
+  static const String textCredits = 'Поступления';
 }

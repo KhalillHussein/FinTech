@@ -5,6 +5,7 @@ class DebitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final creditSumma = context.watch<DebitsController>().summDebit;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -34,19 +35,7 @@ class DebitScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 26.h),
                     child: Column(
                       children: [
-                        SizedBox(
-                          height: 150.h,
-                          child: Stack(
-                            children: [
-                              Chart(),
-                              Center(
-                                  child: Text(
-                                '44 245 ₽',
-                                style: Theme.of(context).textTheme.headline2,
-                              )),
-                            ],
-                          ),
-                        ),
+                        Chart(),
                         SizedBox(height: 24.h),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

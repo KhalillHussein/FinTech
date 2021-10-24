@@ -1,11 +1,15 @@
+import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fintech_app/data/models/category.dart';
 import 'package:fintech_app/data/models/transaction.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
 class DebitsController with ChangeNotifier {
   List<Transaction> _debits;
   List<Transaction> _filteredDebits;
+  List<String> _categoriesLabels;
   List<TransactionCategory> transactionCategories;
   ValidationItem _textFrom = ValidationItem(null, null);
 
@@ -14,6 +18,8 @@ class DebitsController with ChangeNotifier {
   ValidationItem get textFrom => _textFrom;
 
   ValidationItem get textTo => _textTo;
+
+  final List<DebitSeries> _debitSeries = [];
 
   bool get isFormValid {
     if (_textFrom.value != null && _textTo.value != null) {
@@ -30,6 +36,8 @@ class DebitsController with ChangeNotifier {
       return false;
     }
   }
+
+  List<DebitSeries> get debitSeries => _debitSeries.toSet().toList();
 
   void changeFromField(String value) {
     if (value.isNotEmpty) {
@@ -58,17 +66,53 @@ class DebitsController with ChangeNotifier {
       for (final transaction in newTransactions)
         if (transaction.isDebit) transaction
     ];
-    final List<String> categoriesLabels = {
+    _categoriesLabels = {
       for (final transaction in _debits)
         transaction.toTypeByMMC ?? transaction.toTypeByComment
     }.toList();
     transactionCategories = [
-      for (final category in categoriesLabels)
+      for (final category in _categoriesLabels)
         TransactionCategory(name: category),
     ];
-
     _filteredDebits = _debits;
+    calculateCharSeries();
     notifyListeners();
+  }
+
+  double get summDebit {
+    final List<double> values = [
+      for (final credit in _filteredDebits) credit.amount
+    ];
+    return values.sum;
+  }
+
+  void calculateCharSeries() {
+    int barColor = 0;
+    for (final category in _categoriesLabels) {
+      double summ = 0;
+
+      for (final debit in _filteredDebits) {
+        if (debit.toTypeByComment
+                ?.toLowerCase()
+                ?.contains(category.toLowerCase()) ??
+            debit.toTypeByMMC
+                ?.toLowerCase()
+                ?.contains(category.toLowerCase())) {
+          summ += debit.amount;
+          barColor = debit.toColorByMMC ?? debit.toColorByComment;
+        }
+      }
+      _debitSeries.add(
+        DebitSeries(
+          category: category,
+          amount: summ,
+          barColor: charts.ColorUtil.fromDartColor(
+            Color(barColor),
+          ),
+        ),
+      );
+    }
+    print(_debitSeries);
   }
 
   void selectCategory(TransactionCategory newCategory) {
@@ -94,6 +138,8 @@ class DebitsController with ChangeNotifier {
                       transaction.amount <= query.amounts.last)),
         )
         .toList();
+    _debitSeries.clear();
+    calculateCharSeries();
     notifyListeners();
   }
 }
@@ -127,4 +173,18 @@ class Query extends Equatable {
         period,
         amounts,
       ];
+}
+
+class DebitSeries extends Equatable {
+  final String category;
+  final double amount;
+  final charts.Color barColor;
+
+  const DebitSeries(
+      {@required this.category,
+      @required this.amount,
+      @required this.barColor});
+
+  @override
+  List<Object> get props => [category, amount, barColor];
 }

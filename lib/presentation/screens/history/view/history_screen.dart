@@ -50,8 +50,9 @@ class HistoryScreen extends StatelessWidget {
                                 title: 'Расходы',
                                 onTap: () => Navigator.pushNamed(
                                     context, AppRoutes.debit),
-                                subtitle:
-                                    '${AppFormatters.numberFormatter.format(controller.summDebit)} ₽',
+                                subtitle: AppFormatters
+                                    .numberFormatterWithoutDecimal
+                                    .format(controller.summDebit),
                               );
                             }),
                             SizedBox(width: 12.h),
@@ -61,8 +62,9 @@ class HistoryScreen extends StatelessWidget {
                                 onTap: () => Navigator.pushNamed(
                                     context, AppRoutes.credit),
                                 title: 'Поступления',
-                                subtitle:
-                                    '${AppFormatters.numberFormatter.format(controller.summCredit)} ₽',
+                                subtitle: AppFormatters
+                                    .numberFormatterWithoutDecimal
+                                    .format(controller.summCredit),
                                 angle: 125,
                                 color: Color(0xFFB3E9B8),
                               );

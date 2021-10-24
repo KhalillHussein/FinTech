@@ -5,6 +5,7 @@ class CreditScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final creditSumma = context.watch<CreditsController>().summCredit;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -41,7 +42,8 @@ class CreditScreen extends StatelessWidget {
                               Chart(),
                               Center(
                                   child: Text(
-                                '13 000 ₽',
+                                AppFormatters.compactFormatter
+                                    .format(creditSumma),
                                 style: Theme.of(context).textTheme.headline2,
                               )),
                             ],
